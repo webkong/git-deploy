@@ -1,0 +1,48 @@
+{
+  "name": "git-deploy-directory",
+  "version": "1.0.1",
+  "description": "Deploy a directory to a git branch. You can use the configuration file to deploy easily.Useful to deploy to GitHub Pages.",
+  "preferGlobal": true,
+  "bin": {
+    "git-deploy": "bin/git-deploy",
+    "git-deploy-init": "bin/git-deploy-init",
+    "git-deploy-push": "bin/git-deploy-push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webkong/git-deploy-directory.git"
+  },
+  "keywords": [
+    "git-deploy",
+    "git-deploy-directory",
+    "git",
+    "deploy",
+    "cli"
+  ],
+  "author": "webkong <772930508@qq.com> (http://blog.webkong.cn)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webkong/git-deploy-directory/issues"
+  },
+  "homepage": "https://github.com/webkong/git-deploy-directory#readme",
+  "scripts": {},
+  "dependencies": {
+    "async": "^2.4.0",
+    "bluebird": "^3.5.2",
+    "chalk": "^2.1.0",
+    "coffee-script": "1.12.7",
+    "commander": "^2.9.0",
+    "consolidate": "^0.14.0",
+    "cross-spawn": "^6.0.5",
+    "handlebars": "^4.0.5",
+    "inquirer": "^3.3.0",
+    "tildify": "^1.2.0",
+    "uid": "0.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^3.19.0",
+    "execa": "^0.8.0",
+    "mocha": "^3.5.3"
+  }
+}

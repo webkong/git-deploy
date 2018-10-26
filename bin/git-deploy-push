@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+const exec = require('child_process').execSync
+const logger = require('../lib/logger');
+const chalk = require('chalk')
+const gitInfo = require('../lib/git-info');
+const rm = require('rimraf').sync
+const info = gitInfo();
+
+let baseDir = process.env.PWD;
+//首先验证是否已经存在配置文件
+fs.readFile('./.git-deployrc', {
+  encoding: 'utf-8'
+}, function (err, data) {
+  if (err) {
+    logger.fatal('No configuration file！ You can use <git deploy init> first.')
+  } else {
+    const config = data && JSON.parse(data);
+    const deploy = require('../lib/deployer.js');
+    const sourceDir = path.join(baseDir, config.dir);
+    const deployDir = path.join(baseDir, '.deploy_git');
+    try{
+      exec('rm -rf '+deployDir+'/')
+      exec('cp -r '+ sourceDir+'/ ' + deployDir+'/')
+    }catch(e){
+      logger.fatal(e);
+    }
+    deploy({
+      deployDir:deployDir,
+      baseDir: sourceDir,
+      url: config.repo || info.url,
+      branch: config.branch || 'master',
+      name: info.name,
+      email: info.email
+    })
+  }
+});
+
+/**
+ * Padding.
+ */
+
+console.log()
+process.on('exit', () => {
+  console.log()
+})

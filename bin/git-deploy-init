@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const fs = require('fs')
+const path = require('path')
+const chalk = require('chalk') //控制台输出带颜色的日志
+const inquirer = require('inquirer') // 常用交互式命令行用户界面的信息收集
+const logger = require('../lib/logger');
+const parseConfig = require('../lib/parse_config');
+const gitInfo = require('../lib/git-info');
+
+const info = gitInfo();
+/**
+ * init Config
+ */
+//首先验证是否已经存在配置文件
+fs.stat('./.git-deployrc', function (err, stats) {
+  if (err) {
+    initConfig();
+  } else {
+    inquirer.prompt([{
+        type: 'Confirm',
+        name: 'initConfig',
+        message: 'The config file is already exist, are you sure to overwrite it ?(Yes/No)',
+        default: 'Yes'
+      }])
+      .then(answers => {
+        if (answers.initConfig === 'Yes') {
+          initConfig();
+        } else {
+          logger.log('Thank you for use!')
+        }
+      });
+  }
+});
+
+
+function initConfig() {
+  const str = fs.readFileSync(path.resolve(__dirname, '../lib/.git-deployrc'), {
+    encoding: 'utf-8'
+  });
+  const data = str.replace('&&', info.url);
+  fs.writeFile('./.git-deployrc', data, function (err) {
+    if (err) {
+      logger.fatal(err);
+    } else {
+      logger.success('Add configuration file success!');
+      logger.success('Will deployed to <' + info.url + '>')
+    }
+  })
+
+}
+
+/**
+ * Padding.
+ */
+
+console.log()
+process.on('exit', () => {
+  console.log()
+})
