@@ -7,7 +7,7 @@
 ### 安装
 
 ``` bash
-$ npm install -d git-deploy-directory
+$ npm install -D git-deploy-directory
 or 
 $ yarn add -D git-deploy-directory
 ```

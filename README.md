@@ -8,14 +8,15 @@ Deploy a directory to a git branch. You can use the configuration file to deploy
 ### Installation
 
 ``` bash
-$ npm install -d git-deploy-directory
+$ npm install -D git-deploy-directory
 or 
 $ yarn add -D git-deploy-directory
 ```
 
 ### Usage
-// init 
 ``` bash
+// init 
+
 $ git deploy init //Initialize the configuration file
 ```
 Configuration file
