@@ -6,7 +6,6 @@ const path = require('path')
 const chalk = require('chalk') //控制台输出带颜色的日志
 const inquirer = require('inquirer') // 常用交互式命令行用户界面的信息收集
 const logger = require('../lib/logger');
-const parseConfig = require('../lib/parse_config');
 const gitInfo = require('../lib/git-info');
 
 const info = gitInfo();

@@ -1,6 +1,6 @@
 {
   "name": "git-deploy-directory",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Deploy a directory to a git branch. You can use the configuration file to deploy easily.Useful to deploy to GitHub Pages.",
   "preferGlobal": true,
   "bin": {
