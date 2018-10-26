@@ -16,10 +16,6 @@ before_script:
   - git config --global user.email "you@example.com"
   - git config --global user.name "Your Name"
 
-script:
-  - npm run eslint
-  - npm run test-cov
-
 after_script:
   - npm install coveralls
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
